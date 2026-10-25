@@ -1,0 +1,6 @@
+bin/
+bundle/
+dist/
+rsrc_windows_*.syso
+zboard-merc-*.tar.xz
+SHA256SUMS

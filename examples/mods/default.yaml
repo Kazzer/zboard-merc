@@ -1,0 +1,14 @@
+table: standin
+leds:
+  enabled: mod
+  action: mod
+keys:
+  maximize:
+    chord:
+      - left-win
+      - up
+  media-select: ui
+  restore:
+    chord:
+      - left-win
+      - down

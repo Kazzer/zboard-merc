@@ -1,0 +1,5 @@
+SUBSYSTEM=="input", ATTRS{idVendor}=="1038", ATTRS{idProduct}=="0210", TAG+="uaccess"
+SUBSYSTEM=="input", ATTRS{idVendor}=="1038", ATTRS{idProduct}=="0510", TAG+="uaccess"
+SUBSYSTEM=="hidraw", ATTRS{idVendor}=="1038", ATTRS{idProduct}=="0210", TAG+="uaccess"
+SUBSYSTEM=="hidraw", ATTRS{idVendor}=="1038", ATTRS{idProduct}=="0510", TAG+="uaccess"
+KERNEL=="uinput", SUBSYSTEM=="misc", OPTIONS+="static_node=uinput", TAG+="uaccess"

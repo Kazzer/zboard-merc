@@ -1,0 +1,33 @@
+#include <windows.h>
+
+#define ZBOARD_STR2(x) #x
+#define ZBOARD_STR(x) ZBOARD_STR2(x)
+
+VS_VERSION_INFO VERSIONINFO
+FILEVERSION     ZBOARD_VERSION_RC
+PRODUCTVERSION  ZBOARD_VERSION_RC
+FILEFLAGSMASK   VS_FFI_FILEFLAGSMASK
+FILEFLAGS       0
+FILEOS          VOS_NT_WINDOWS32
+FILETYPE        VFT_DLL
+FILESUBTYPE     VFT2_UNKNOWN
+BEGIN
+    BLOCK "StringFileInfo"
+    BEGIN
+        BLOCK "040904B0"
+        BEGIN
+            VALUE "CompanyName",      "Aether Software"
+            VALUE "FileDescription",  "Zboard MERC keyboard HID minidriver (UMDF 2)"
+            VALUE "FileVersion",      ZBOARD_STR(ZBOARD_VERSION)
+            VALUE "InternalName",     "zboardhid.dll"
+            VALUE "LegalCopyright",   "Copyright (c) 2026 Aether Software"
+            VALUE "OriginalFilename", "zboardhid.dll"
+            VALUE "ProductName",      "Zboard"
+            VALUE "ProductVersion",   ZBOARD_STR(ZBOARD_VERSION)
+        END
+    END
+    BLOCK "VarFileInfo"
+    BEGIN
+        VALUE "Translation", 0x409, 1200
+    END
+END

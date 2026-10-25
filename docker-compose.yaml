@@ -1,0 +1,12 @@
+---
+services:
+  zboard:
+    build:
+      context: build
+      dockerfile: Dockerfile
+    environment:
+      GOPATH: ~
+    user: ${DOCKER_UID_GID:-0:0}
+    volumes:
+      - ./:/go/
+      - ~/.go/:/tmp/go/

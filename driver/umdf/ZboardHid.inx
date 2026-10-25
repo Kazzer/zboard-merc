@@ -1,0 +1,76 @@
+;
+; UMDF 2 HID minidriver for the keyboard interface of the Zboard MERC and Zboard MERC Stealth
+; Only binds to keyboard interface (MI_00); consumer and vendor interface (MI_01) use Windows'
+; own diver.
+;
+
+[Version]
+Signature="$WINDOWS NT$"
+Class=HIDClass
+ClassGuid={745a17a0-74d3-11d0-b6fe-00a0c90f57da}
+Provider=%Provider%
+DriverVer=
+CatalogFile=ZboardHid.cat
+PnpLockdown=1
+
+[DestinationDirs]
+UMDriverCopy=13
+
+[SourceDisksNames]
+1=%Disk%,,,""
+
+[SourceDisksFiles]
+zboardhid.dll=1
+
+[Manufacturer]
+%Manufacturer%=Zboard,NT$ARCH$.10.0...22000
+
+[Zboard.NT$ARCH$.10.0...22000]
+%Stealth%=ZboardHid.NT, USB\VID_1038&PID_0510&MI_00
+%Merc%=ZboardHid.NT, USB\VID_1038&PID_0210&MI_00
+
+[ZboardHid.NT]
+CopyFiles=UMDriverCopy
+Include=MsHidUmdf.inf
+Needs=MsHidUmdf.NT
+Include=WUDFRD.inf
+Needs=WUDFRD_LowerFilter.NT
+
+[ZboardHid.NT.hw]
+Include=MsHidUmdf.inf
+Needs=MsHidUmdf.NT.hw
+Include=WUDFRD.inf
+Needs=WUDFRD_LowerFilter.NT.hw
+
+[ZboardHid.NT.Services]
+Include=MsHidUmdf.inf
+Needs=MsHidUmdf.NT.Services
+Include=WUDFRD.inf
+Needs=WUDFRD_LowerFilter.NT.Services
+
+[ZboardHid.NT.Filters]
+Include=WUDFRD.inf
+Needs=WUDFRD_LowerFilter.NT.Filters
+
+[ZboardHid.NT.Wdf]
+UmdfService=ZboardHid, ZboardHid_Install
+UmdfServiceOrder=ZboardHid
+UmdfDispatcher=NativeUSB
+UmdfKernelModeClientPolicy=AllowKernelModeClients
+UmdfFileObjectPolicy=AllowNullAndUnknownFileObjects
+UmdfMethodNeitherAction=Copy
+UmdfFsContextUsePolicy=CanUseFsContext2
+
+[ZboardHid_Install]
+UmdfLibraryVersion=$UMDFVERSION$
+ServiceBinary=%13%\zboardhid.dll
+
+[UMDriverCopy]
+zboardhid.dll
+
+[Strings]
+Provider="Aether Software"
+Manufacturer="Ideazon"
+Disk="Zboard driver files"
+Stealth="Zboard MERC Stealth"
+Merc="Zboard MERC"

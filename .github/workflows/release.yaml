@@ -1,0 +1,30 @@
+---
+name: Release
+
+on:
+  release:
+    types:
+      - published
+
+permissions:
+  contents: write
+
+env:
+  GOPATH: /tmp/go
+
+jobs:
+  artifacts:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v5
+      - name: Check that the tag matches internal/version/VERSION
+        run: test "v$(make version)" = "$GITHUB_REF_NAME"
+      - name: Build the bundles and the source distribution
+        run: |
+          mkdir -p ~/.go
+          make zboard-merc-$(make version)-{linux,windows}-{amd64,arm64}.tar.xz dist
+          sha256sum zboard-merc-*.tar.xz > SHA256SUMS
+      - name: Attach them to the release
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: gh release upload "$GITHUB_REF_NAME" zboard-merc-*.tar.xz SHA256SUMS --clobber

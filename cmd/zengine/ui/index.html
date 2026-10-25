@@ -1,0 +1,36 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>zboard</title>
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<header>
+  <h1>zboard</h1>
+  <div class="leds">
+    <span id="led-enabled" class="led" title="Enabled LED">Enabled</span>
+    <span id="led-action" class="led" title="Action LED">Action</span>
+  </div>
+  <label>Mod <select id="pin"></select></label>
+  <span id="process" class="muted"></span>
+  <span id="flags"></span>
+  <button id="reload" type="button" title="Re-read config.yaml and mods/*.yaml">Reload files</button>
+  <span id="notice" role="status"></span>
+</header>
+<div id="layout">
+  <nav>
+    <h2>Mods</h2>
+    <ul id="mods"></ul>
+    <button id="new-mod" type="button">New Mod</button>
+    <h2>Agent</h2>
+    <ul><li><a href="#settings" id="settings-link">Settings</a></li></ul>
+  </nav>
+  <main id="main"><p class="muted">Pick a Mod on the left, or Settings.</p></main>
+</div>
+<datalist id="sources"></datalist>
+<datalist id="keynames"></datalist>
+<script src="app.js"></script>
+</body>
+</html>

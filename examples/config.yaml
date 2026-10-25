@@ -1,0 +1,23 @@
+# Default profile to load
+default: default
+
+# USB product id to drive: 0210 Merc, 0510 Merc Stealth; empty detects.
+device: !!str
+
+# Control API and web UI address, loopback only.
+# control: 127.0.0.1:47319
+
+# Tray icon: auto (when a desktop session is there), on, or off.
+tray: auto
+
+# How long a macro's tap stays pressed unless the macro or the step says (a game that reads
+# the keyboard once per frame misses a shorter press); 0 for none.
+tap-hold: 40ms
+
+# What the two extra LEDs show unless the active Mod has its own "leds:" section.
+#   mod          Enabled = a Mod is active, Action = a macro is running
+#   on / off     fixed
+#   flag:<name>  a named flag that "toggle: <name>" bindings flip
+leds:
+  enabled: off
+  action: off
